@@ -1,31 +1,40 @@
 __author__ = 'gabrieleyyi'
+import random
+import unittest
+import xmlrunner
 
-from datetime import date
+class TestSequenceFunctions(unittest.TestCase):
 
-import Unit_Test as un
+    def setUp(self):
+        self.seq = list(range(10))
 
-def print_current_date():
-    today = date.today()
-    print "Today :\n", str(today)
+    @unittest.skip("demonstrating skipping")
+    def test_skipped(self):
+        self.fail("shouldn't happen")
 
+    def test_shuffle(self):
+        # make sure the shuffled sequence does not lose any elements
+        random.shuffle(self.seq)
+        self.seq.sort()
+        self.assertEqual(self.seq, list(range(10)))
 
-def main():
-    print_current_date()
+        # should raise an exception for an immutable sequence
+        self.assertRaises(TypeError, random.shuffle, (1,2,3))
 
-def func(x):
-    return x + 1
+    def test_choice(self):
+        element = random.choice(self.seq)
+        self.assertTrue(element in self.seq)
 
-def test_answer():
-    assert func(3) == 4
-    #print ##teamcity[progressMessage '123456']
+    def test_sample(self):
+        with self.assertRaises(ValueError):
+            random.sample(self.seq, 20)
+        for element in random.sample(self.seq, 5):
+            self.assertTrue(element in self.seq)
 
 if __name__ == '__main__':
-    main()
-    test_answer()
-
-    if un.is_running_under_teamcity():
-        runner = un.TeamcityTestRunner()
-    else:
-        runner = un.unittest.TextTestRunner()
-    un.unittest.main(testRunner=runner)
+    unittest.main(
+        testRunner=xmlrunner.XMLTestRunner(output='test-reports'),
+        # these make sure that some options that are not applicable
+        # remain hidden from the help menu.
+        failfast=False, buffer=False, catchbreak=False)
 
