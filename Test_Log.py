@@ -17,15 +17,15 @@ def func(x):
 
 def test_answer():
     assert func(3) == 4
-    print ##teamcity[progressMessage '123456']
+    #print ##teamcity[progressMessage '123456']
 
 if __name__ == '__main__':
     main()
     test_answer()
 
-    # if un.is_running_under_teamcity():
-    #     runner = un.TeamcityTestRunner()
-    # else:
-    #     runner = un.unittest.TextTestRunner()
-    # un.unittest.main(testRunner=runner)
+    if un.is_running_under_teamcity():
+        runner = un.TeamcityTestRunner()
+    else:
+        runner = un.unittest.TextTestRunner()
+    un.unittest.main(testRunner=runner)
 
