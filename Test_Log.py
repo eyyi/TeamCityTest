@@ -13,7 +13,6 @@ def main():
     print_current_date()
 
 def func(x):
-    ##teamcity[<messageName> timestamp='timestamp' ...]
     return x + 1
 
 def test_answer():
