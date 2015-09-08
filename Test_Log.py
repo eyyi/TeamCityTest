@@ -30,11 +30,12 @@ class TestSequenceFunctions(unittest.TestCase):
             random.sample(self.seq, 20)
         for element in random.sample(self.seq, 5):
             self.assertTrue(element in self.seq)
+        print "--- result ---"
 
 if __name__ == '__main__':
     unittest.main(
         testRunner=xmlrunner.XMLTestRunner(output='test-reports'),
         # these make sure that some options that are not applicable
         # remain hidden from the help menu.
-        failfast=False, buffer=False, catchbreak=False)
+        failfast=False, buffer=True, catchbreak=False)
 
