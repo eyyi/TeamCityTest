@@ -31,7 +31,7 @@ class TestSequenceFunctions(unittest.TestCase):
         for element in random.sample(self.seq, 5):
             self.assertTrue(element in self.seq)
 
-        print "##teamcity[buildStatisticValue key='model_1' value='10']"
+        print "##teamcity[buildStatisticValue key='model_1' value='8']"
 
 if __name__ == '__main__':
     unittest.main(
