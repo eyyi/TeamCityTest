@@ -32,6 +32,7 @@ class TestSequenceFunctions(unittest.TestCase):
             self.assertTrue(element in self.seq)
 
         print "##teamcity[buildStatisticValue key='model_1' value='8']"
+        print "##teamcity[buildStatisticValue key='model_2' value='4']"
 
 if __name__ == '__main__':
     unittest.main(
